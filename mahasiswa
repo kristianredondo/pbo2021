@@ -1,0 +1,16 @@
+<?php
+class Mahasiswa
+{
+    public $nama;
+    public $nim;
+    public $tanggal_lahir;
+    public $jenis_kelamin;
+
+    public function tampilkanAngkatan () {
+
+    }
+    public function tampilkanUmur(){
+
+
+    }
+}

@@ -1,0 +1,40 @@
+<?php
+class Mahasiswa
+{
+    public $nama;
+    public $nim;
+    public $tanggal_lahir;
+    public $jenis_kelamin;
+
+    public function tampilkanAngkatan () {
+
+    }
+    public function tampilkanUmur(){
+
+
+    }
+}
+
+
+<?php
+include ("Mahasiswa.php");
+
+    $dondo = new Mahasiswa();
+    $dondo->nama = "Cristian Redondo";
+    $dondo->nim = "H1101191072";
+    $dondo->tanggal_lahir = "23-03-2001";
+    $dondo->jenis_kelamin = "Laki-Laki";
+
+    $andry = new Mahasiswa();
+    $andry->nama = "Andry Maulana";
+    $andry->nim = "H1101191070";
+    $andry->tanggal_lahir = "13-08-2001";
+    $andry->jenis_kelamin = "Laki-Laki";
+
+    $gusti = new Mahasiswa();
+    $gusti->nama = "Gusti Izza Maulana";
+    $gusti->nim = "H1101191073";
+    $gusti->tanggal_lahir = "15-08-2001";
+    $gusti->jenis_kelamin = "Laki-Laki";
+
+?>

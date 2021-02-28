@@ -1,0 +1,162 @@
+(Dosen)
+<?php
+    require_once("Pegawai.php");
+
+    class Dosen extends Pegawai
+    {
+        public $nidn;
+        public $jabatan_akademis;
+
+        function __construct($nip, $nama, $hp, $gaji, $nidn, $jabatan){
+            $this->nip = $nip;
+            $this->nama = $nama;
+            $this->no_hp = $hp;
+            $this->gaji_pokok = $gaji;
+            $this->nidn = $nidn;
+            $this->jabatan_akademis = $jabatan;
+        }
+
+        public function mengajar(){
+
+        }
+        public function meneliti(){
+
+        }
+    }
+    
+?>
+
+(index)
+<?php
+    include("Mahasiswa.php");
+    require_once("Mahasiswa.php");
+    require_once("MahasiswaBaru.php");
+
+    
+    $dondo = new MahasiswaBaru("H1101201072", "Cristian Redondo", "2001-03-23", "Laki-Laki", 1902);
+    $andry = new Mahasiswa("H1101191070", "Andry Maulana", "2001-08-13", "Laki-Laki");
+    $gusti = new Mahasiswa("H1101191073", "Gusti Izza Maulana", "2001-08-15", "Laki-Laki");
+
+
+    
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Test</title>
+</head>
+<body>
+    <?php echo "<p>Hello World</p>"; ?>
+    <?php 
+        $dondo->tampilkanNama(); 
+        echo "<br>";
+        $dondo->tampilkanUmur(); 
+        echo "<br>";
+        $dondo->tampilkanAngkatan(); 
+    ?>
+</body>
+</html> 
+
+(mahasiswa)
+<?php
+    require_once("User.php");
+
+    class Mahasiswa extends User{
+        public $nim;
+        public $nama;
+        public $tanggal_lahir;
+        public $jenis_kelamin;
+
+        function __construct($nim, $nama, $tgl, $jk){
+            $this->nim = $nim;
+            $this->nama = $nama;
+            $this->tanggal_lahir = $tgl;
+            $this->jenis_kelamin = $jk;
+        }
+
+        public function tampilkanAngkatan(){ 
+            $akt = substr($this->nim, 5, -4);
+            echo "Merupakan angkatan tahun 20" . $akt;
+        }
+
+        public function tampilkanUmur(){
+            $tgl_lahir = date_create($this->tanggal_lahir);
+            $umur = date_diff($tgl_lahir, date_create("today"))->y;
+            // y = year / tahun
+            // m = month / bulan
+            // d = day / hari
+            echo $umur;
+        }
+
+        public function tampilkanNama(){
+            echo $this->nama;
+        }
+    }
+?>
+
+(mahasiswabaru)
+<?php 
+    require_once("Mahasiswa.php");
+
+    class MahasiswaBaru extends Mahasiswa
+    {
+        public $no_registrasi;
+
+        function __construct($nim, $nama, $tgl, $jk, $regis){
+            $this->nim = $nim;
+            $this->nama = $nama;
+            $this->tanggal_lahir = $tgl;
+            $this->jenis_kelamin = $jk;
+            $this->no_registrasi = $regis;
+        }
+
+        public function bayarGedung(){
+            echo "$this->username telah membayar gedung";
+        }
+    }
+?>
+
+(pegawai)
+<?php
+    require_once("User.php");
+
+    class Pegawai extends User
+    {
+        public $nip;
+        public $nama;
+        public $no_hp;
+        public $gaji_pokok;
+
+        function __construct($nip, $nama, $hp, $gaji){
+            $this->nip = $nip;
+            $this->nama = $nama;
+            $this->no_hp = $hp;
+            $this->gaji_pokok = $gaji;
+        }
+
+        public function tampilkanGaji(){
+            echo "Jumlah gaji : $this->gaji_pokok";
+        }
+    }
+?>
+
+(user)
+<?php
+    class User
+    {
+        public $username;
+        public $password;
+
+        function __construct($user, $pass){
+            $this->username = $user;
+            $this->password = $pass;
+        }
+
+        public function login(){
+            return "$this->username telah berhasil login";
+        }
+    }
+?>
